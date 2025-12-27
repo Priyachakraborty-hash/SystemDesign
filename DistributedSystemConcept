@@ -1,0 +1,57 @@
+
+# Suppose you "my cool app"
+# fault tolerance :
+# The backend of the My Cool App consists of many nodes now. Multiple server programs are running on tens of machines. Then there are database replicas to serve read requests efficiently. You have also set up a data sync mechanism so that the database nodes are always consistent.
+
+# One of the nodes running the server program is suddenly handling too many connections. As a result, the node runs out of the RAM it needs to function correctly and the node crashes.
+# Network communication between two database nodes dropped which means the data sync among your database nodes has stopped.
+# Hardware components like a disk drive or logic board chips got damaged in any of the nodes of your system.
+# Your server nodes are unable to handle a sudden spike in traffic, resulting in crashes.
+# There was a new feature added to My Cool App. The code that was deployed contained a nullPointerException bug which caused the crash of server programs running on the nodes.
+
+# system should be capable of tolerating faults in different parts of the system.
+# Maybe an external API is changed and the API contract is invalid.
+# This is why we need fault tolerance in our distributed systems. Otherwise, one small bump in any part of the system will bring the whole thing down—And surely nobody wants that. If this type of full-system crash is allowed to happen, then there is no point in building distributed systems in the first place.
+# If there is something in your system not functioning as expected, you possibly have a fault.
+# Distributed systems have to be able to tolerate faults so that they can continue to function even if faults appear.
+# As a system owner, you should always expect faults and remain prepared accordingly. In the case of handling faults, prevention is better than cures.
+# Distributed systems have to be fault tolerant by nature.
+
+# reliability:
+#  A reliable system is capable of “continuing to work correctly, even when things go wrong.
+#  in a distributed system, faults are inevitable. Hardware withers away with time. Networks drop and fluctuate randomly. Power outages happen now and then. When the system is built, scenarios like these have to be kept in mind. A reliable system can operate correctly in times of such failure scenarios. The word correctly is crucial here.
+#  A reliable system never continues to operate on corrupted data without any recovery effort. If this happens, the system is not reliable.
+#  Hard disks are reported as having a mean time to failure (MTTF) of about 10 to 50 years. Thus, on a storage cluster with 10,000 disks, we should expect on average one disk to die per day.
+#  Sometimes it will randomly cause the server program to crash and restart, such as when some null pointer dereferences due to some specific logical flow which is probably rare. Sometimes it will keep the program crashing every single time it tries to restart, maybe due to some misconfiguration in server startup parameters.
+
+# Sometimes the bugs are not generic. You won’t encounter them until a very specific set of parameters are passed to a particular function. If you don’t know the specific set of inputs, it may be even impossible to reproduce the bug.
+
+# In your system, as the developer, you are probably responsible for a software bug. But sometimes it can be due to some third-party library that you are using. Maybe they have some misplaced condition that caused a set of side effects which affected your system.
+# A distributed system has to be reliable for its users. If a system is not reliable, its users will become increasingly skeptical about it.
+# To ensure reliability, faults should be properly detected and handled.
+# Both the hardware and software of a system will have faults in them—this is more or less inevitable. We can never expect things to always go right.
+# Ask
+
+# Handling hardware faults :
+#  it’s a very common practice to add redundancy by having more than one disk drive store the same data. These disks are generally cheap ones. Storing the same data in more than one disk helps to make sure that if there is an unrecoverable disk failure, then another disk can be used to recover the data(RAID)
+# Handling software faults
+# There are a couple of ways you can consider handling software faults in your system. Let’s discuss briefly.
+
+# Write tests
+# Write tests for your code. There are different types of tests that are pretty common in developing distributed systems.
+
+# Unit tests
+# Unit tests are targeted at individual functions or modules of your codebase. For example, for a specific function, you create a set of test cases, pass the cases as parameters to the functions, and check the output against the expected input. Tests like these are written by the programmer to ensure the correctness of the logical flow of code.
+
+# Integration tests
+# Integration tests are targeted at different pieces of the system or modules in more of a combined way—they test how pieces interact with each other. For example, a server program sends queries to a database. You might want to run integration tests to check whether the flow between server and database is working correctly.
+
+# End-to-end tests
+# End-to-end tests are run to simulate user behavior. Their purpose is to touch the whole flow in the system starting from the user interaction on the app or website to database operations and system response. Tests like this require much more effort and collaboration between multiple teams in large systems. But they are definitely worth the effort.
+
+# Handle errors
+# Handle errors in all parts of your codebase, wherever they are likely. Sometimes while writing code, you may think that a function call or some file input or output won’t throw an error, but it eventually does. it might be rare—but as a developer, do not take things by chance.
+
+# Monitor critical parts
+# You should monitor the critical parts of the system, and add logs wherever required. This will help you to get notified of any abnormality in the system immediately so that you can react fast and ensure fault tolerance. There are third-party services you can use for this purpose. The services will give you graphical interfaces on which you can see all kinds of statuses of your system. 
+
