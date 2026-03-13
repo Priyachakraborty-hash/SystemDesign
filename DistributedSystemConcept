@@ -55,3 +55,21 @@
 # Monitor critical parts
 # You should monitor the critical parts of the system, and add logs wherever required. This will help you to get notified of any abnormality in the system immediately so that you can react fast and ensure fault tolerance. There are third-party services you can use for this purpose. The services will give you graphical interfaces on which you can see all kinds of statuses of your system. 
 
+What is availability?
+Availability is a property of a distributed system that ensures that the system is ready to serve users whenever users need it.
+
+In practice, it’s easier to define availability in a mathematical formula.
+
+Say, the backend system of the My Cool App was up for 
+U,time and down for D,time since its launch. Then availability A
+A = U / (U+D)
+
+​
+
+So basically, availability is the percentage of time a system was up for a given time range. For example, a system that is 
+99 %
+ available for a year means it will be down for 3.65 days over the period.
+
+For many systems, around 4 days of downtime over a year is bad.
+Availability is measurable. We should leverage well-defined metrics to measure the availability of a system and act upon it accordingly.
+
