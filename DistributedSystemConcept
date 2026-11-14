@@ -1,5 +1,5 @@
 
-# Suppose you "my cool app"
+Suppose you "my cool app"
 # fault tolerance :
 # The backend of the My Cool App consists of many nodes now. Multiple server programs are running on tens of machines. Then there are database replicas to serve read requests efficiently. You have also set up a data sync mechanism so that the database nodes are always consistent.
 
